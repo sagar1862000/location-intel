@@ -3,7 +3,7 @@ import { Sidebar } from '@/components/layout/sidebar'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'LocationIQ - Intelligence Platform',
+  title: 'Location Intelligence Platform',
   description: 'Location intelligence platform for multi-location businesses',
 }
 

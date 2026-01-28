@@ -29,7 +29,7 @@ export function Sidebar() {
             <Building2 className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="font-bold text-lg">LocationIQ</h1>
+            <h1 className="font-bold text-lg">Location Intel</h1>
             <p className="text-xs text-gray-400">Intelligence Platform</p>
           </div>
         </Link>

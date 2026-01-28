@@ -1,4 +1,4 @@
-# LocationIQ - Location Intelligence Platform
+# Location Intelligence Platform
 
 A real-time intelligence platform for multi-location businesses, built with Next.js and Supabase.
 
@@ -6,7 +6,7 @@ A real-time intelligence platform for multi-location businesses, built with Next
 
 ## Overview
 
-LocationIQ transforms raw location data into actionable business insights. Instead of showing raw numbers, it answers key business questions:
+Location Intelligence Platform transforms raw location data into actionable business insights. Instead of showing raw numbers, it answers key business questions:
 
 - **Which locations need immediate attention and why?**
 - **What patterns exist in customer feedback?**

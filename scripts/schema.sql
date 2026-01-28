@@ -1,6 +1,3 @@
--- Supabase SQL Schema for Location Intelligence Platform
--- Run this in your Supabase SQL Editor
-
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -53,7 +50,7 @@ CREATE TABLE IF NOT EXISTS kpis (
   UNIQUE(location_id, week_start)
 );
 
--- Indexes for better query performance
+-- Indexes 
 CREATE INDEX IF NOT EXISTS idx_reviews_location ON reviews(location_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_date ON reviews(review_date DESC);
 CREATE INDEX IF NOT EXISTS idx_reviews_rating ON reviews(rating);
@@ -62,12 +59,8 @@ CREATE INDEX IF NOT EXISTS idx_kpis_week ON kpis(week_start);
 CREATE INDEX IF NOT EXISTS idx_locations_city ON locations(city);
 CREATE INDEX IF NOT EXISTS idx_locations_rating ON locations(average_rating);
 
--- Enable Row Level Security (optional but recommended)
-ALTER TABLE locations ENABLE ROW LEVEL SECURITY;
-ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
-ALTER TABLE kpis ENABLE ROW LEVEL SECURITY;
 
--- Create policies for public read access
+-- policies for public read access
 CREATE POLICY "Allow public read access on locations" ON locations FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on reviews" ON reviews FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on kpis" ON kpis FOR SELECT USING (true);
