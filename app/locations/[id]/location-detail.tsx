@@ -261,7 +261,7 @@ function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center py-20">
       <h2 className="text-2xl font-bold text-gray-900">Location Not Found</h2>
-      <p className="text-gray-500 mt-2">The location you're looking for doesn't exist.</p>
+      <p className="text-gray-500 mt-2">The location you&apos;re looking for doesn&apos;t exist.</p>
       <Link href="/locations" className="mt-4 text-blue-500 hover:underline">
         ← Back to Locations
       </Link>
