@@ -40,13 +40,12 @@ export function ReviewsContent() {
 
   if (loading || !analytics) return <ReviewsSkeleton />
 
+  // Filter reviews based on selection
   const filteredReviews = reviews.filter(r => {
-    switch (filter) {
-      case 'positive': return r.rating >= 4
-      case 'negative': return r.rating <= 2
-      case 'unanswered': return !r.has_reply && r.rating <= 3
-      default: return true
-    }
+    if (filter === 'positive') return r.rating >= 4
+    if (filter === 'negative') return r.rating <= 2
+    if (filter === 'unanswered') return !r.has_reply && r.rating <= 3
+    return true
   })
 
   const positiveCount = reviews.filter(r => r.rating >= 4).length

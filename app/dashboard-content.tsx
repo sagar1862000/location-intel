@@ -65,6 +65,8 @@ export function DashboardContent() {
     return <DashboardSkeleton />
   }
 
+  // Calculate week-over-week change for impressions
+  // Using last 2 weeks - might want to make this configurable
   const weeklyChange = trends.length >= 2
     ? ((trends[trends.length - 1].impressions - trends[trends.length - 2].impressions) / trends[trends.length - 2].impressions) * 100
     : 0

@@ -5,6 +5,9 @@ import {
 } from './types'
 import { calculateHealthScore, categorizeFeedback } from './utils'
 
+// Note: These functions fetch all data client-side. For production with larger datasets,
+// we'd want to move aggregations to SQL or add pagination
+
 export async function getLocations(): Promise<Location[]> {
   const { data, error } = await supabase
     .from('locations')
@@ -83,6 +86,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   }
 }
 
+// Generate alerts for locations that need attention
+// Thresholds are hardcoded for now - could make these configurable
 export async function getAlerts(): Promise<AlertItem[]> {
   const [locations, reviews, kpis] = await Promise.all([
     getLocations(),
@@ -305,6 +310,8 @@ export async function getReviewAnalytics() {
   }
 }
 
+// Get detailed insights for a single location
+// TODO: This function does a lot - might want to split it up
 export async function getLocationInsights(locationId: string) {
   const [location, reviews, kpis] = await Promise.all([
     getLocationById(locationId),

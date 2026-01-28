@@ -66,6 +66,7 @@ export function Sidebar() {
           <p className="text-xs text-gray-400">Healthcare Brand</p>
           <p className="text-sm font-medium">50 Locations</p>
         </div>
+        {/* TODO: Add settings/config page */}
       </div>
     </aside>
   )

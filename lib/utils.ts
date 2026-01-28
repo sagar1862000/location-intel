@@ -5,13 +5,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+// Health score weights - might need tuning based on business feedback
 export function calculateHealthScore(
   rating: number,
   ratingTrend: number,
   responseRate: number,
   kpiTrend: number
 ): number {
+  // Rating is most important - 40%
   const ratingScore = (rating / 5) * 40
+  
+  // TODO: ratingTrend calculation needs more historical data to be accurate
   const trendScore = Math.min(Math.max((ratingTrend + 1) / 2, 0), 1) * 20
   const responseScore = responseRate * 20
   const kpiScore = Math.min(Math.max((kpiTrend + 50) / 100, 0), 1) * 20
@@ -63,20 +67,22 @@ export function getRelativeTime(date: string): string {
   return `${Math.floor(diffInDays / 30)} months ago`
 }
 
+// Simple keyword-based sentiment - could use NLP library for better accuracy
 export function extractSentimentKeywords(text: string): {
   positive: string[]
   negative: string[]
 } {
+  // These keywords were picked from manually reviewing the sample data
   const positiveKeywords = [
-    'clean', 'professional', 'friendly', 'helpful', 'knowledgeable',
-    'excellent', 'great', 'best', 'satisfied', 'recommend', 'quick',
-    'hygienic', 'modern', 'polite', 'caring', 'thorough', 'effective'
+    'clean', 'professional', 'friendly', 'helpful', 
+    'excellent', 'great', 'best', 'recommend', 'quick',
+    'hygienic', 'polite', 'caring'
   ]
   
   const negativeKeywords = [
-    'wait', 'waiting', 'long', 'rude', 'unhelpful', 'dirty', 'unclean',
-    'expensive', 'overpriced', 'cancelled', 'unprofessional', 'disappointing',
-    'error', 'wrong', 'dust', 'uncomfortable', 'dismissive'
+    'wait', 'waiting', 'long', 'rude', 'dirty',
+    'expensive', 'overpriced', 'unprofessional',
+    'wrong', 'uncomfortable'
   ]
   
   const lowerText = text.toLowerCase()
@@ -87,27 +93,26 @@ export function extractSentimentKeywords(text: string): {
   }
 }
 
+// Categorize feedback into themes based on keywords
+// TODO: This is pretty basic - would be better with proper NLP
 export function categorizeFeedback(text: string): string[] {
   const categories: string[] = []
   const lowerText = text.toLowerCase()
   
-  if (lowerText.includes('wait') || lowerText.includes('time') || lowerText.includes('appointment')) {
+  if (lowerText.includes('wait') || lowerText.includes('time')) {
     categories.push('Wait Time')
   }
-  if (lowerText.includes('staff') || lowerText.includes('rude') || lowerText.includes('helpful') || lowerText.includes('friendly')) {
+  if (lowerText.includes('staff') || lowerText.includes('rude') || lowerText.includes('helpful')) {
     categories.push('Staff Behavior')
   }
-  if (lowerText.includes('clean') || lowerText.includes('dirty') || lowerText.includes('hygienic') || lowerText.includes('dust')) {
+  if (lowerText.includes('clean') || lowerText.includes('dirty')) {
     categories.push('Cleanliness')
   }
-  if (lowerText.includes('price') || lowerText.includes('expensive') || lowerText.includes('bill') || lowerText.includes('charged')) {
+  if (lowerText.includes('price') || lowerText.includes('expensive') || lowerText.includes('bill')) {
     categories.push('Billing')
   }
-  if (lowerText.includes('doctor') || lowerText.includes('treatment') || lowerText.includes('diagnosis')) {
+  if (lowerText.includes('doctor') || lowerText.includes('treatment')) {
     categories.push('Medical Care')
-  }
-  if (lowerText.includes('parking') || lowerText.includes('location') || lowerText.includes('facility')) {
-    categories.push('Facility')
   }
   
   return categories.length > 0 ? categories : ['General']
