@@ -15,6 +15,7 @@ Instead of just showing raw data in tables, I focused on building an **intellige
 **Health Score** - Single 0-100 score combining rating, response rate, and KPI trends. A location with 5 stars but declining visibility will score lower than you'd expect.
 
 **Alert System** - Automatically flags locations with:
+
 - Rating below 3.0 or 3.5
 - Unanswered negative reviews
 - Big drops in impressions (>20% in 2 weeks)
@@ -33,25 +34,29 @@ Instead of just showing raw data in tables, I focused on building an **intellige
 ## Setup
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
-2. Create Supabase project and run schema from `scripts/schema.sql`
+1. Create Supabase project and run schema from `scripts/schema.sql`
 
-3. Add credentials to `.env.local`:
-```
-NEXT_PUBLIC_SUPABASE_URL=your_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
-SUPABASE_SERVICE_KEY=your_service_key
+2. Add credentials to `.env.local`:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://bqmtseunljucvmiwxuwc.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_eM_qghZ2oBgY4ahSSfSZ8g_8uK3AJ0u
+SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxbXRzZXVubGp1Y3ZtaXd4dXdjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2OTUxNzA0MiwiZXhwIjoyMDg1MDkzMDQyfQ.xKszBykio-LzZNphJi0367tUEC3zW6FKDW6QrhPbpP0
 ```
 
-4. Seed the database:
+1. Seed the database:
+
 ```bash
 npm run seed
 ```
 
-5. Run dev server:
+1. Run dev server:
+
 ```bash
 npm run dev
 ```
@@ -90,6 +95,7 @@ Looking at the sample data:
 ## What I'd Add Next
 
 With more time:
+
 - Better NLP for review analysis (maybe use an LLM API)
 - Export to PDF/Excel for sharing
 - Email alerts when something needs attention
